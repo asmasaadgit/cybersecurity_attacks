@@ -38,6 +38,9 @@ text_features = vectorizer.fit_transform(data['Payload Data'])
 # Combine all features
 features = pd.concat([data[['Protocol', 'Packet Type', 'Traffic Type', 'Malware Indicators', 'Anomaly Scores', 'Alerts/Warnings', 'Action Taken', 'Severity Level', 'User Information', 'Device Information', 'Network Segment', 'Geo-location Data', 'Proxy Information', 'Firewall Logs', 'IDS/IPS Alerts', 'Log Source']], pd.DataFrame(text_features.toarray())], axis=1)
 
+# Ensure all feature names are strings
+features.columns = features.columns.astype(str)
+
 # Target variable
 target = data['Attack Type']
 
